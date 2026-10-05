@@ -30,59 +30,38 @@
 
 ```cpp
 #include <iostream>
+
 using namespace std;
 
-long long ackermannRecursive(long long m, long long n) {
-    if (m == 0) {
-        return n + 1;
-    }
-    else if (n == 0) {
-        return ackermannRecursive(m - 1, 1);
-    }
-    else {
-        return ackermannRecursive(m - 1, ackermannRecursive(m, n - 1));
-    }
-}
-
-long long ackermannNonRecursive(long long m, long long n) {
-
-    const int MAX_STACK = 100000;
-    long long stack[MAX_STACK];
-    int top = -1;
-
-    stack[++top] = m;
-
-    while (top >= 0) {
-        m = stack[top--];
-
-        if (m == 0) {
-            n = n + 1;
+void generateSubsets(const char S[], int n, int index, char current[], int currentSize) {
+    if (index == n) {
+        cout << "(";
+        for (int i = 0; i < currentSize; ++i) {
+            cout << current[i];
+            if (i + 1 < currentSize) {
+                cout << ",";
+            }
         }
-        else if (n == 0) {
-            n = 1;
-            stack[++top] = m - 1;
-        }
-        else {
-            stack[++top] = m - 1;
-            stack[++top] = m;
-            n = n - 1;
-        }
+        cout << "), ";
+        return;
     }
-    return n;
+
+    generateSubsets(S, n, index + 1, current, currentSize);
+
+    current[currentSize] = S[index];
+    generateSubsets(S, n, index + 1, current, currentSize + 1);
 }
 
 int main() {
-    long long m, n;
-    cout << " input m and n: ";
-    if (std::cin >> m >> n) {
-        std::cout << endl << "output" << std::endl;
+    char S[] = {'a', 'b', 'c'};
+    int n = 3;
 
-        long long resultRec = ackermannRecursive(m, n);
-        std::cout << "Recursive A(" << m << ", " << n << ") = " << resultRec << std::endl;
+  
+    char current[3];
 
-        long long resultNonRec = ackermannNonRecursive(m, n);
-        std::cout << "NonRecursive A(" << m << ", " << n << ") = " << resultNonRec << std::endl;
-    }
+    cout << "powerset(S) = { ";
+    generateSubsets(S, n, 0, current, 0);
+    cout << "}" << endl;
 
     return 0;
 }
