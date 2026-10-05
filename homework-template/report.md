@@ -13,7 +13,9 @@ Ackermann 函數 $A(m,n)$ 是一個典型的雙變數非原始遞迴函數（Non
 
 1.遞迴函式設計：
 根據 Ackermann 函數的數學定義進行遞迴拆解：
-$$A(m, n) = \begin{cases} n + 1 & \text{if } m = 0 \\ A(m - 1, 1) & \text{if } n = 0 \\ A(m - 1, A(m, n - 1)) & \text{otherwise} \end{cases}$$
+n+1 if m=0
+A(m-1,1) if n=0
+A(m-1,A(m,n-1)) otherwise
 2. 當 $n \leq 1$ 時，返回 $n$ 作為遞迴的結束條件。  
 3. 主程式呼叫遞迴函式，並輸出計算結果。
 
