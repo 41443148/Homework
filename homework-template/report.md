@@ -16,7 +16,9 @@ Ackermann 函數 $A(m,n)$ 是一個典型的雙變數非原始遞迴函數（Non
 n+1 if m=0
 A(m-1,1) if n=0
 A(m-1,A(m,n-1)) otherwise
-2.由於 Ackermann 函數遞迴深度極深，容易造成系統堆疊溢位（Stack Overflow），且受限於僅能使用 <iostream> 標頭檔，本程式採用自定義靜態陣列模擬堆疊（Stack）的方式，以 while 迴圈迭代取代直接的函式遞迴。  
+
+2.由於 Ackermann 函數遞迴深度極深，容易造成系統堆疊溢位（Stack Overflow），且受限於僅能使用 <iostream> 標頭檔，本程式採用自定義靜態陣列模擬堆疊（Stack）的方式，以 while 迴圈迭代取代直接的函式遞迴。
+
 3. 主程式提供介面讓使用者輸入 $m$ 與 $n$，並分別呼叫遞迴與非遞迴版本進行計算與結果比對。
 
 ## 程式實作
